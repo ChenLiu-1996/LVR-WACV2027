@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LVR @ WACV 2027: Latent Visual Reasoning</title>
+    <meta name="description"
+        content="Latent Visual Reasoning: Perception, Imagination, and Multimodal Thought. 1st LVR Workshop at WACV 2027.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f7f6f3;
+            --paper: #fffcf8;
+            --ink: #1c1917;
+            --muted: #57534e;
+            --line: #e7e0d6;
+            --accent: #9a3412;
+            --accent-soft: #f5e6dc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Source Sans 3", system-ui, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .wrap {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(247, 246, 243, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        nav .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            min-height: 52px;
+            overflow-x: auto;
+        }
+
+        .brand {
+            font-weight: 700;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.9rem;
+            font-size: 0.92rem;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+        }
+
+        .hero {
+            padding: 3.4rem 0 2.4rem;
+        }
+
+        .kicker {
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 700;
+            margin: 0 0 0.7rem;
+        }
+
+        h1 {
+            font-family: "Source Serif 4", Georgia, serif;
+            font-size: clamp(1.7rem, 3.4vw, 2.55rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin: 0 0 0.85rem;
+        }
+
+        .meta {
+            color: var(--muted);
+            margin: 0 0 1.35rem;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.55rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+        }
+
+        .btn:hover {
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink);
+            border-color: var(--line);
+        }
+
+        section {
+            padding: 0.4rem 0 2.4rem;
+        }
+
+        h2 {
+            font-family: "Source Serif 4", Georgia, serif;
+            font-size: 1.45rem;
+            font-weight: 600;
+            margin: 0 0 0.9rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--line);
+        }
+
+        h3 {
+            font-size: 1.02rem;
+            margin: 1.2rem 0 0.45rem;
+        }
+
+        p {
+            margin: 0 0 0.85rem;
+        }
+
+        ul {
+            margin: 0.2rem 0 0.9rem;
+            padding-left: 1.15rem;
+        }
+
+        li {
+            margin: 0.25rem 0;
+        }
+
+        .tba {
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.85rem;
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.7rem;
+        }
+
+        .grid-4 .card {
+            padding: 0.7rem;
+        }
+
+        .grid-4 .card img.portrait {
+            margin-bottom: 0.5rem;
+        }
+
+        .grid-4 .card h3 {
+            font-size: 0.92rem;
+        }
+
+        .grid-4 .affil {
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 720px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .card a.portrait-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card a.portrait-link:hover img.portrait {
+            opacity: 0.88;
+        }
+
+        .card img.portrait {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            background: var(--accent-soft);
+            display: block;
+        }
+
+        .card h3 {
+            margin: 0 0 0.2rem;
+            font-size: 1.02rem;
+        }
+
+        .affil {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .role {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin: 0.35rem 0 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 0.65rem 0.8rem;
+            border-bottom: 1px solid var(--line);
+            vertical-align: top;
+        }
+
+        th {
+            background: var(--accent-soft);
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 1.4rem 0 2.2rem;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="wrap">
+            <a class="brand" href="#top">LVR @ WACV 2027</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#speakers">Speakers</a>
+                <a href="#cfp">Call for Papers</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#organizers">Organizers</a>
+                <a href="#sponsors">Sponsors</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" id="top">
+        <div class="wrap">
+            <p class="kicker">WACV 2027 Workshop &nbsp;·&nbsp; 1st Edition &nbsp;·&nbsp; Half-day</p>
+            <h1>Latent Visual Reasoning: Perception, Imagination, and Multimodal Thought</h1>
+            <p class="meta">
+                Date: <span class="tba">TO BE ADDED</span> &nbsp;·&nbsp;
+                Location: <span class="tba">TO BE ADDED</span>
+            </p>
+            <div class="actions">
+                <a class="btn btn-primary" href="#cfp">Call for Papers</a>
+                <a class="btn btn-ghost" href="#submission">Submission</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section id="about">
+            <h2>About</h2>
+            <p>
+                What should a model think with when words are not enough? Should it keep an internal scene, imagine
+                how objects move, revise a spatial hypothesis, or switch among visual, linguistic, symbolic, and
+                tool-based computation?
+            </p>
+            <p>
+                Current multimodal large language models typically encode an image as context and carry out
+                intermediate reasoning in language. Language is well suited to abstraction and communication, but it
+                often struggles with precise pose, depth, correspondence, occlusion, and temporal or geometric
+                structure. People, by contrast, often simulate how a scene might unfold rather than narrating every
+                detail. When an apple falls from a table, we can imagine its motion, the collision, and where it
+                lands without putting the whole process into words. That kind of spatial and dynamic reasoning may be
+                essential for visual intelligence in video, 3D vision, robotics, medical imaging, and scientific
+                vision.
+            </p>
+            <p>
+                The Latent Visual Reasoning (LVR) workshop focuses on visual reasoning that does not rely exclusively
+                on text as the intermediate representation. We welcome work on visual tokens, latent scenes, imagined
+                visual states, and other structured representations that keep task-relevant visual information, as
+                well as hybrid systems that combine these with language, symbols, explicit visual operations, or
+                tools. In every case, the intermediate representation should play a testable computational role, not
+                merely coincide with an ordinary hidden activation.
+            </p>
+        </section>
+
+        <section id="speakers">
+            <h2>Invited Speakers</h2>
+            <div class="grid">
+                <article class="card">
+                    <a class="portrait-link" href="https://robertgeirhos.com/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/robert-geirhos.png" alt="Robert Geirhos" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Robert Geirhos</h3>
+                    <p class="affil">Staff Research Scientist</p>
+                    <p class="affil">Google DeepMind</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://xulabs.github.io/min-xu/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/min-xu.png" alt="Min Xu" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Min Xu</h3>
+                    <p class="affil">Associate Professor</p>
+                    <p class="affil">Carnegie Mellon University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://lotusroot-kim.github.io/research_homepage/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/youngeun-kim.png" alt="Youngeun Kim" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Youngeun Kim</h3>
+                    <p class="affil">Assistant Professor</p>
+                    <p class="affil">Korea University / Amazon</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="cfp">
+            <h2>Call for Papers</h2>
+            <p>
+                We invite submissions on latent visual reasoning: work whose intermediate computation is not limited
+                to text, especially when visual structure is kept and updated across reasoning steps. Topics include,
+                but are not limited to:
+            </p>
+            <ul>
+                <li>
+                    Representations of evolving visual state: visual tokens, latent scenes,
+                    structured memories, mental imagery, and persistent spatial or temporal states.
+                </li>
+                <li>
+                    Learning and inference: mechanisms that route among latent computation,
+                    language, symbols, visual operations, and tools.
+                </li>
+                <li>
+                    Tasks and evaluation: images, video, 3D vision, embodied systems, medical
+                    imaging, and scientific vision, including supervision, test-time computation, causal
+                    interventions, matched-compute comparisons, benchmarks, faithfulness, interpretability,
+                    efficiency, safety, and failure analysis.
+                </li>
+            </ul>
+
+            <h3 id="submission">Tracks and publication</h3>
+            <p>
+                We welcome archival regular papers and non-archival short papers, position papers, and extended
+                abstracts. Archival papers will appear in the WACV 2027 proceedings; the other tracks will not.
+                Archival papers must be at least five pages, subject to the conference's final requirements. Each
+                track's publication status will be listed on this page.
+            </p>
+            <p>
+                All submissions will be handled through OpenReview.
+                Submission portal: <span class="tba">TO BE ADDED</span>.
+                Style file and formatting instructions: <span class="tba">TO BE ADDED</span>.
+            </p>
+
+            <h3>Timeline</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Submission deadline</td>
+                        <td class="tba">TO BE ADDED (AoE)</td>
+                    </tr>
+                    <tr>
+                        <td>Notification to authors</td>
+                        <td class="tba">TO BE ADDED (AoE)</td>
+                    </tr>
+                    <tr>
+                        <td>Camera-ready deadline</td>
+                        <td class="tba">TO BE ADDED (AoE)</td>
+                    </tr>
+                    <tr>
+                        <td>Workshop date</td>
+                        <td class="tba">TO BE ADDED</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="schedule">
+            <h2>Tentative Schedule</h2>
+            <p>
+                LVR will be a half-day, in-person workshop at WACV 2027.
+                Times and room: <span class="tba">TO BE ADDED</span>.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Session</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Opening and research agenda</td>
+                        <td class="tba">TO BE ADDED</td>
+                    </tr>
+                    <tr>
+                        <td>Invited talks</td>
+                        <td class="tba">TO BE ADDED</td>
+                    </tr>
+                    <tr>
+                        <td>Contributed orals and spotlights</td>
+                        <td class="tba">TO BE ADDED</td>
+                    </tr>
+                    <tr>
+                        <td>Posters and demonstrations</td>
+                        <td class="tba">TO BE ADDED</td>
+                    </tr>
+                    <tr>
+                        <td>Panel: “How Do We Know a Model Is Reasoning Visually?”</td>
+                        <td class="tba">TO BE ADDED</td>
+                    </tr>
+                    <tr>
+                        <td>Awards and closing remarks</td>
+                        <td class="tba">TO BE ADDED</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="organizers">
+            <h2>Organizing Committee</h2>
+            <!-- Drop files in photos/: xi-xiao.png, chen-liu.png, qizhen-lan.png, lin-zhao.png, chenrui-ma.png, xinru-jiang.png, xiao-wang.png, tianyang-wang.png, ferdinando-fioretto.png, octavia-camps.png -->
+            <div class="grid grid-4">
+                <article class="card">
+                    <a class="portrait-link" href="https://xixiaouab.github.io/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/xi-xiao.png" alt="Xi Xiao" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Xi Xiao</h3>
+                    <p class="affil">University of Alabama at Birmingham</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://chenliu-1996.github.io/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/chen-liu.png" alt="Chen Liu" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Chen Liu</h3>
+                    <p class="affil">Yale University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://lanqz7766.github.io/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/qizhen-lan.png" alt="Qizhen Lan" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Qizhen Lan</h3>
+                    <p class="affil">UTHealth Houston</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://lin-zhao-resolve.github.io/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/lin-zhao.png" alt="Lin Zhao" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Lin Zhao</h3>
+                    <p class="affil">Northeastern University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://merry7cherry.github.io/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/chenrui-ma.png" alt="Chenrui Ma" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Chenrui Ma</h3>
+                    <p class="affil">University of Virginia</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://oshikaka.github.io/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/xinru-jiang.png" alt="Xinru Jiang" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Xinru Jiang</h3>
+                    <p class="affil">Northeastern University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://www.ornl.gov/staff-profile/xiao-wang" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/xiao-wang.png" alt="Xiao Wang" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Xiao Wang</h3>
+                    <p class="affil">ORNL / University of Tennessee, Knoxville</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://wangt0716.github.io/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/tianyang-wang.png" alt="Tianyang Wang" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Tianyang Wang</h3>
+                    <p class="affil">University of Alabama at Birmingham</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://nandofioretto.github.io/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/ferdinando-fioretto.png" alt="Ferdinando Fioretto" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Ferdinando Fioretto</h3>
+                    <p class="affil">University of Virginia</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://coe.northeastern.edu/people/camps-octavia/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/octavia-camps.png" alt="Octavia Camps" onerror="this.style.display='none'">
+                    </a>
+                    <h3>Octavia Camps</h3>
+                    <p class="affil">Northeastern University</p>
+                </article>
+            </div>
+            <p style="margin-top: 1rem;">
+                Contact: <a href="mailto:fioretto@virginia.edu">fioretto@virginia.edu</a>
+            </p>
+        </section>
+
+        <section id="sponsors">
+            <h2>Sponsors</h2>
+            <p class="tba">TO BE ADDED</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            LVR Workshop: Latent Visual Reasoning @ WACV 2027
+        </div>
+    </footer>
+</body>
+
+</html>

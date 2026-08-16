@@ -195,7 +195,8 @@
             text-align: center;
         }
 
-        .organizer-grid .card img.portrait {
+        .organizer-grid .card img.portrait,
+        .organizer-grid .portrait-placeholder {
             margin-bottom: 0.5rem;
         }
 
@@ -230,7 +231,8 @@
             color: inherit;
         }
 
-        .card a.portrait-link:hover img.portrait {
+        .card a.portrait-link:hover img.portrait,
+        .card a.portrait-link:hover .portrait-placeholder {
             opacity: 0.88;
         }
 
@@ -242,6 +244,22 @@
             margin-bottom: 0.75rem;
             background: var(--accent-soft);
             display: block;
+        }
+
+        .card .portrait-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 1px dashed #d7b9a8;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(145deg, var(--accent-soft), #fff8f3);
+            color: var(--accent);
+            display: grid;
+            place-items: center;
+            font-family: "Source Serif 4", Georgia, serif;
+            font-size: clamp(1.35rem, 3vw, 2.1rem);
+            font-weight: 600;
+            letter-spacing: 0.04em;
         }
 
         .card h3 {
@@ -582,7 +600,78 @@
 
         <section id="program-committee">
             <h2>Program Committee</h2>
-            <p class="tba">Members will be announced soon.</p>
+            <div class="grid organizer-grid program-committee-grid">
+                <article class="card">
+                    <a class="portrait-link" href="https://loop.frontiersin.org/people/2972165/overview" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/hao-xu.webp" alt="Hao Xu" width="700" height="700" loading="lazy" decoding="async">
+                    </a>
+                    <h3><a href="https://loop.frontiersin.org/people/2972165/overview" target="_blank" rel="noopener noreferrer">Hao Xu</a></h3>
+                    <p class="affil">Harvard University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://trendscenter.org/yuxiang-wei/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/yuxiang-wei.webp" alt="Yuxiang Wei" width="700" height="700" loading="lazy" decoding="async">
+                    </a>
+                    <h3><a href="https://trendscenter.org/yuxiang-wei/" target="_blank" rel="noopener noreferrer">Yuxiang Wei</a></h3>
+                    <p class="affil">Georgia Institute of Technology</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://jike338.github.io/" target="_blank" rel="noopener noreferrer">
+                        <img class="portrait" src="photos/jike-zhong.webp" alt="Jike Zhong" width="700" height="700" loading="lazy" decoding="async">
+                    </a>
+                    <h3><a href="https://jike338.github.io/" target="_blank" rel="noopener noreferrer">Jike Zhong</a></h3>
+                    <p class="affil">University of Southern California</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://www.linkedin.com/in/jinyang-liu-6646411a9" target="_blank" rel="noopener noreferrer">
+                        <div class="portrait-placeholder" role="img" aria-label="Portrait forthcoming for Jinyang Liu">JL</div>
+                    </a>
+                    <h3><a href="https://www.linkedin.com/in/jinyang-liu-6646411a9" target="_blank" rel="noopener noreferrer">Jinyang Liu</a></h3>
+                    <p class="affil">Northeastern University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://lihaolin88.github.io/CVPR-2025-3DHGS/" target="_blank" rel="noopener noreferrer">
+                        <div class="portrait-placeholder" role="img" aria-label="Portrait forthcoming for Haolin Li">HL</div>
+                    </a>
+                    <h3><a href="https://lihaolin88.github.io/CVPR-2025-3DHGS/" target="_blank" rel="noopener noreferrer">Haolin Li</a></h3>
+                    <p class="affil">Northeastern University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://www.linkedin.com/in/jonathansullivan83" target="_blank" rel="noopener noreferrer">
+                        <div class="portrait-placeholder" role="img" aria-label="Portrait forthcoming for Jonathan Sullivan">JS</div>
+                    </a>
+                    <h3><a href="https://www.linkedin.com/in/jonathansullivan83" target="_blank" rel="noopener noreferrer">Jonathan Sullivan</a></h3>
+                    <p class="affil">Northeastern University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://www.linkedin.com/in/enfu-nan-534186277" target="_blank" rel="noopener noreferrer">
+                        <div class="portrait-placeholder" role="img" aria-label="Portrait forthcoming for Enfu Nan">EN</div>
+                    </a>
+                    <h3><a href="https://www.linkedin.com/in/enfu-nan-534186277" target="_blank" rel="noopener noreferrer">Enfu Nan</a></h3>
+                    <p class="affil">Northeastern University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://cemse.kaust.edu.sa/profiles/juyi-lin" target="_blank" rel="noopener noreferrer">
+                        <div class="portrait-placeholder" role="img" aria-label="Portrait forthcoming for Juyi Lin">JL</div>
+                    </a>
+                    <h3><a href="https://cemse.kaust.edu.sa/profiles/juyi-lin" target="_blank" rel="noopener noreferrer">Juyi Lin</a></h3>
+                    <p class="affil">Northeastern University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://xiaomeng-yang.github.io/" target="_blank" rel="noopener noreferrer">
+                        <div class="portrait-placeholder" role="img" aria-label="Portrait forthcoming for Xiaomeng Yang">XY</div>
+                    </a>
+                    <h3><a href="https://xiaomeng-yang.github.io/" target="_blank" rel="noopener noreferrer">Xiaomeng Yang</a></h3>
+                    <p class="affil">Northeastern University</p>
+                </article>
+                <article class="card">
+                    <a class="portrait-link" href="https://www.amazon.science/author/eric-zhao" target="_blank" rel="noopener noreferrer">
+                        <div class="portrait-placeholder" role="img" aria-label="Portrait forthcoming for Eric Zhao">EZ</div>
+                    </a>
+                    <h3><a href="https://www.amazon.science/author/eric-zhao" target="_blank" rel="noopener noreferrer">Eric Zhao</a></h3>
+                    <p class="affil">Amazon</p>
+                </article>
+            </div>
         </section>
 
         <section id="sponsors">

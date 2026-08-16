@@ -200,6 +200,26 @@
             margin-bottom: 0.5rem;
         }
 
+        .organizer-grid .portrait-link--zoom {
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .organizer-grid .portrait-link--zoom img.portrait {
+            margin-bottom: 0;
+        }
+
+        .organizer-grid .portrait-link--zoom-xi img.portrait {
+            transform: scale(1.22);
+            transform-origin: 50% 70%;
+        }
+
+        .organizer-grid .portrait-link--zoom-qizhen img.portrait {
+            transform: scale(1.12);
+            transform-origin: 50% 58%;
+        }
+
         .organizer-grid .card h3 {
             font-size: 0.88rem;
         }
@@ -528,7 +548,7 @@
             <!-- Drop files in photos/: xi-xiao.png, chen-liu.png, qizhen-lan.png, lin-zhao.png, chenrui-ma.png, xinru-jiang.png, xiao-wang.png, tianyang-wang.png, ferdinando-fioretto.png, octavia-camps.png -->
             <div class="grid organizer-grid">
                 <article class="card">
-                    <a class="portrait-link" href="https://xixiaouab.github.io/" target="_blank" rel="noopener noreferrer">
+                    <a class="portrait-link portrait-link--zoom portrait-link--zoom-xi" href="https://xixiaouab.github.io/" target="_blank" rel="noopener noreferrer">
                         <img class="portrait" src="photos/xi-xiao.png" alt="Xi Xiao" onerror="this.style.display='none'">
                     </a>
                     <h3><a href="https://xixiaouab.github.io/" target="_blank" rel="noopener noreferrer">Xi Xiao</a></h3>
@@ -542,7 +562,7 @@
                     <p class="affil">Yale University</p>
                 </article>
                 <article class="card">
-                    <a class="portrait-link" href="https://lanqz7766.github.io/" target="_blank" rel="noopener noreferrer">
+                    <a class="portrait-link portrait-link--zoom portrait-link--zoom-qizhen" href="https://lanqz7766.github.io/" target="_blank" rel="noopener noreferrer">
                         <img class="portrait" src="photos/qizhen-lan.png" alt="Qizhen Lan" onerror="this.style.display='none'">
                     </a>
                     <h3><a href="https://lanqz7766.github.io/" target="_blank" rel="noopener noreferrer">Qizhen Lan</a></h3>

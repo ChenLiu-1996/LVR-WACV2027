@@ -168,8 +168,37 @@
         }
 
         .hero .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: fit-content;
+            padding: 0.38rem 0.44rem 0.38rem 0.72rem;
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            border-radius: 999px;
+            background: rgba(24, 14, 10, 0.34);
+            color: #fff7ed;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+            backdrop-filter: blur(9px);
+            -webkit-backdrop-filter: blur(9px);
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.38);
+        }
+
+        .hero .kicker-divider {
+            width: 4px;
+            height: 4px;
+            flex: 0 0 auto;
+            border-radius: 50%;
+            background: #fdba74;
+            box-shadow: 0 0 0 3px rgba(253, 186, 116, 0.14);
+        }
+
+        .hero .kicker-edition {
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(255, 237, 213, 0.16);
             color: #fed7aa;
-            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+            letter-spacing: 0.08em;
+            white-space: nowrap;
         }
 
         .hero .meta {
@@ -614,6 +643,19 @@
             .hero {
                 padding: 2.35rem 0 2.7rem;
             }
+
+            .hero .kicker {
+                gap: 0.45rem;
+                max-width: 100%;
+                padding: 0.34rem 0.38rem 0.34rem 0.56rem;
+                font-size: 0.72rem;
+                letter-spacing: 0.09em;
+            }
+
+            .hero .kicker-edition {
+                padding: 0.18rem 0.42rem;
+                letter-spacing: 0.06em;
+            }
         }
 
         @media (max-width: 720px) {
@@ -659,7 +701,11 @@
     <header class="hero" id="top">
         <div class="wrap hero-layout">
             <div class="hero-copy">
-                <p class="kicker">WACV 2027 Workshop &nbsp;·&nbsp; 1st Edition &nbsp;·&nbsp; Half-day</p>
+                <p class="kicker">
+                    <span>WACV 2027 Workshop</span>
+                    <span class="kicker-divider" aria-hidden="true"></span>
+                    <span class="kicker-edition">1st Edition</span>
+                </p>
                 <h1>Latent Visual Reasoning: Perception, Imagination, and Multimodal Thought</h1>
                 <p class="meta">
                     Date: January 4 or 5, 2027 (TBD) &nbsp;·&nbsp;

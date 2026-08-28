@@ -301,6 +301,22 @@
             font-style: italic;
         }
 
+        .submission-resources {
+            margin: 1rem 0 1.15rem;
+            padding: 0.85rem 1rem;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            background: rgba(175, 72, 32, 0.07);
+            font-size: 1.06rem;
+            line-height: 1.65;
+        }
+
+        .submission-resources a {
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -823,7 +839,7 @@
                     venue and publication status; these submissions will not be republished.
                 </li>
             </ul>
-            <p>
+            <p class="submission-resources">
                 All submissions will be handled through OpenReview.
                 Submission portal: <a href="https://openreview.net/group?id=thecvf.com/WACV/2027/Workshop/LVR#tab-your-consoles" target="_blank" rel="noopener noreferrer">Submit via OpenReview</a>.
                 Formatting: please use the official

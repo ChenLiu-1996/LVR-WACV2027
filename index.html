@@ -148,6 +148,7 @@
         .hero .wrap {
             position: relative;
             z-index: 2;
+            width: 100%;
         }
 
         .hero-layout {
@@ -211,6 +212,113 @@
             border-color: rgba(255, 255, 255, 0.66);
             background: rgba(24, 14, 10, 0.32);
             backdrop-filter: blur(7px);
+        }
+
+        .submission-countdown {
+            grid-column: 1 / -1;
+            min-width: 0;
+            margin-top: 0.6rem;
+            padding: 1.4rem 1.65rem 1.2rem;
+            border: 1px solid rgba(253, 186, 116, 0.38);
+            border-radius: 18px;
+            color: #fff7ed;
+            background: linear-gradient(120deg, rgba(53, 29, 18, 0.94), rgba(28, 21, 18, 0.88));
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            scroll-margin-top: 72px;
+        }
+
+        .countdown-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            margin-bottom: 1.3rem;
+        }
+
+        .countdown-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin: 0;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: #fed7aa;
+        }
+
+        .countdown-eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            flex: 0 0 auto;
+            border-radius: 50%;
+            background: #fb923c;
+            box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.13);
+        }
+
+        .countdown-deadline {
+            margin: 0;
+            color: #f7e4d5;
+            font-size: 0.92rem;
+        }
+
+        .countdown-deadline time {
+            font-weight: 700;
+        }
+
+        .countdown-clock {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .countdown-unit {
+            min-width: 0;
+            padding: 0.9rem 0.25rem 0.8rem;
+            border: 1px solid rgba(255, 237, 213, 0.13);
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(255, 237, 213, 0.09), rgba(255, 237, 213, 0.02));
+            text-align: center;
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: clamp(2.35rem, 6.5vw, 4.6rem);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums lining-nums;
+            letter-spacing: -0.035em;
+            line-height: 1.1;
+            color: #fffaf5;
+        }
+
+        .countdown-unit:last-child .countdown-number {
+            color: #fdba74;
+        }
+
+        .countdown-label {
+            display: block;
+            margin-top: 0.35rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #e7cbb7;
+        }
+
+        .countdown-status {
+            margin: 0.8rem 0 0;
+            color: #e7cbb7;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .submission-countdown[data-expired="true"] .countdown-eyebrow::before {
+            background: #d6c5b9;
+            box-shadow: none;
         }
 
         .kicker {
@@ -677,6 +785,37 @@
                 padding: 0.18rem 0.42rem;
                 letter-spacing: 0.06em;
             }
+
+            .submission-countdown {
+                padding: 1.05rem 0.8rem 0.9rem;
+                border-radius: 14px;
+            }
+
+            .countdown-heading {
+                margin-bottom: 1rem;
+            }
+
+            .countdown-eyebrow {
+                font-size: 0.73rem;
+            }
+
+            .countdown-deadline {
+                font-size: 0.82rem;
+            }
+
+            .countdown-clock {
+                gap: 0.4rem;
+            }
+
+            .countdown-unit {
+                padding: 0.75rem 0.1rem 0.65rem;
+                border-radius: 9px;
+            }
+
+            .countdown-label {
+                font-size: 0.59rem;
+                letter-spacing: 0.08em;
+            }
         }
 
         @media (max-width: 720px) {
@@ -736,6 +875,22 @@
                     <a class="btn btn-primary" href="#cfp">Call for Papers</a>
                     <a class="btn btn-ghost" href="https://openreview.net/group?id=thecvf.com/WACV/2027/Workshop/LVR#tab-your-consoles" target="_blank" rel="noopener noreferrer">Submission</a>
                 </div>
+            </div>
+            <div class="submission-countdown" id="submission-countdown" role="group" aria-labelledby="countdown-title" aria-describedby="countdown-deadline">
+                <div class="countdown-heading">
+                    <p class="countdown-eyebrow" id="countdown-title">Submission countdown</p>
+                    <p class="countdown-deadline" id="countdown-deadline">
+                        <time id="submission-deadline" datetime="2026-10-10T23:59:59-12:00">October 10, 2026</time> · 23:59:59 AoE
+                    </p>
+                </div>
+                <div class="countdown-clock" role="timer" aria-live="off" aria-label="Time remaining until the submission deadline">
+                    <div class="countdown-unit"><span class="countdown-number" data-countdown-unit="days">--</span><span class="countdown-label">Days</span></div>
+                    <div class="countdown-unit"><span class="countdown-number" data-countdown-unit="hours">--</span><span class="countdown-label">Hours</span></div>
+                    <div class="countdown-unit"><span class="countdown-number" data-countdown-unit="minutes">--</span><span class="countdown-label">Minutes</span></div>
+                    <div class="countdown-unit"><span class="countdown-number" data-countdown-unit="seconds">--</span><span class="countdown-label">Seconds</span></div>
+                </div>
+                <p class="countdown-status" id="countdown-status" role="status">Anywhere on Earth (UTC−12)</p>
+                <noscript><p class="countdown-status">Enable JavaScript to see the live countdown.</p></noscript>
             </div>
         </div>
     </header>
@@ -1147,6 +1302,46 @@
             <p>Designed by the <a href="#organizers">LVR 2027 Organizing Committee</a>.</p>
         </div>
     </footer>
+    <script>
+        (() => {
+            const countdown = document.getElementById('submission-countdown');
+            // AoE is UTC−12; use the explicit offset for every visitor's time zone.
+            const deadline = Date.parse(document.getElementById('submission-deadline').dateTime);
+            const units = Array.from(countdown.querySelectorAll('[data-countdown-unit]'));
+            const status = document.getElementById('countdown-status');
+            let intervalId;
+
+            function updateCountdown() {
+                const remaining = deadline - Date.now();
+                const seconds = Math.max(0, Math.ceil(remaining / 1000));
+                const values = [
+                    Math.floor(seconds / 86400),
+                    Math.floor(seconds / 3600) % 24,
+                    Math.floor(seconds / 60) % 60,
+                    seconds % 60
+                ];
+
+                units.forEach((unit, index) => {
+                    const value = String(values[index]).padStart(2, '0');
+                    if (unit.textContent !== value) unit.textContent = value;
+                });
+
+                if (remaining <= 0) {
+                    if (countdown.dataset.expired !== 'true') {
+                        countdown.dataset.expired = 'true';
+                        status.textContent = 'The submission deadline has passed.';
+                    }
+                    clearInterval(intervalId);
+                }
+            }
+
+            intervalId = setInterval(updateCountdown, 1000);
+            updateCountdown();
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) updateCountdown();
+            });
+        })();
+    </script>
 </body>
 
 </html>

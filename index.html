@@ -880,7 +880,7 @@
                 <div class="countdown-heading">
                     <p class="countdown-eyebrow" id="countdown-title">Submission countdown</p>
                     <p class="countdown-deadline" id="countdown-deadline">
-                        <time id="submission-deadline" datetime="2026-10-10T23:59:59-12:00">October 10, 2026</time> · 23:59:59 AoE
+                        <time id="submission-deadline" datetime="2026-10-18T07:00:00-04:00">October 18, 2026</time> · 07:00 EDT
                     </p>
                 </div>
                 <div class="countdown-clock" role="timer" aria-live="off" aria-label="Time remaining until the submission deadline">
@@ -889,7 +889,7 @@
                     <div class="countdown-unit"><span class="countdown-number" data-countdown-unit="minutes">--</span><span class="countdown-label">Minutes</span></div>
                     <div class="countdown-unit"><span class="countdown-number" data-countdown-unit="seconds">--</span><span class="countdown-label">Seconds</span></div>
                 </div>
-                <p class="countdown-status" id="countdown-status" role="status">Anywhere on Earth (UTC−12)</p>
+                <p class="countdown-status" id="countdown-status" role="status">Eastern Daylight Time (UTC−4)</p>
                 <noscript><p class="countdown-status">Enable JavaScript to see the live countdown.</p></noscript>
             </div>
         </div>
@@ -978,7 +978,11 @@
             </ul>
 
             <h3 id="submission">Tracks and publication</h3>
-            <p>We welcome submissions in the following three categories:</p>
+            <p>
+                Archival (8 pages) and non-archival (4 pages) submissions are both welcome; the latter is a good
+                option for papers that you will later extend and submit to a main conference. Presentation-only
+                submissions are for highly relevant works recently published at a different venue.
+            </p>
             <ul>
                 <li>
                     <strong>Archival regular papers (8 pages).</strong> Accepted papers will appear in the
@@ -1001,6 +1005,7 @@
                 <a href="https://wacv.thecvf.com/static/wacv-2027-author-kit-template.zip">WACV 2027 LaTeX Author Kit</a>
                 and follow the
                 <a href="https://wacv.thecvf.com/Conferences/2027/AuthorGuides" target="_blank" rel="noopener noreferrer">WACV 2027 Author Guidelines</a>.
+                References do not count toward the page limit; supplementary material, if any, should be placed after the references.
             </p>
 
             <h3>Timeline</h3>
@@ -1018,7 +1023,7 @@
                     </tr>
                     <tr>
                         <td>Submission deadline</td>
-                        <td>October 10, 2026 (AoE)</td>
+                        <td>October 18, 2026, 07:00 EDT</td>
                     </tr>
                     <tr>
                         <td>Author notification deadline (archival papers)</td>
@@ -1305,7 +1310,7 @@
     <script>
         (() => {
             const countdown = document.getElementById('submission-countdown');
-            // AoE is UTC−12; use the explicit offset for every visitor's time zone.
+            // EDT is UTC−4; use the explicit offset for every visitor's time zone.
             const deadline = Date.parse(document.getElementById('submission-deadline').dateTime);
             const units = Array.from(countdown.querySelectorAll('[data-countdown-unit]'));
             const status = document.getElementById('countdown-status');
